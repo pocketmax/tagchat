@@ -1,0 +1,12 @@
+<div ng-controller="ChatwindowCtrl">
+  <ul style="width: 90%; border: 1px solid red;">
+    <li ng-repeat="line in chatLines | limitTo:-10 track by $index">{{line.message}}</li>
+  </ul>
+</div>
+
+<div ng-controller="ChatmessageCtrl">
+  <form ng-submit="addMessage()">
+    <input ng-model="newMessage">
+    <input type="submit" value="add">
+  </form>
+</div>
