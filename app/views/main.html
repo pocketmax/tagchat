@@ -1,3 +1,5 @@
+<pre>{{items | json}}</pre>
+
 <div class="row">
     <div class="col-sm-8 ">
 
@@ -7,9 +9,9 @@
                     <div class="list-group-item list-group-item-success" style="text-align: right;" ng-repeat="(id, line) in items | limitTo:-100 track by id">
                         <div class="row">
                             {{line.msg}}
-                            <div class="row">
-                                <div class="clearfix btn btn-primary pull-right" ng-repeat="tag in line.tags">{{tag}}
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="clearfix btn btn-primary pull-right" ng-repeat="tag in line.tags">{{tag}}
                             </div>
                         </div>
                     </div>
@@ -38,7 +40,7 @@
                         </auto-complete>
                     </tags-input>
                 </div>
-                <input type="submit" class="btn btn-primary btn-lg pull-right btn-block" value="send">
+                <input type="submit" class="btn btn-primary btn-lg pull-right btn-block" ng-disabled="!newMessage" value="send">
             </form>
 
         </div>
