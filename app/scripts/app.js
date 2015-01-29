@@ -15,19 +15,29 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'luegg.directives',
+    'firebase',
+    'ngTagsInput',
+    'angular-md5'
   ])
-  .config(function ($routeProvider) {
+  .value('timestamp',Firebase.ServerValue.TIMESTAMP)
+  .constant('FBURL', 'https://burning-fire-3434.firebaseio.com')
+  .run(function($firebase, FBURL, $routeParams, $rootScope){
+      var ref = new Firebase(FBURL + "/tagchat/chatrooms/" + $routeParams.roomId + "/messages");
+      var sync = $firebase(ref);
+      var syncObject = sync.$asObject();
+      syncObject.$bindTo($rootScope, "items");
+  })
+  .config(function(md5Provider, $routeProvider){
+
+    var newRoomId = md5Provider.$get[0]().createHash((new Date().getTime()).toString());
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+    .when('/:roomId', {
+      templateUrl: 'views/main.html',
+      controller: 'MainCtrl'
+    })
+    .otherwise({
+      redirectTo: '/' + newRoomId
+    });
   });
