@@ -8,10 +8,10 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', ['$scope','$routeParams','$firebase','FBURL',function ($scope, $routeParams, $firebase, FBURL) {
+
+        var ref = new Firebase(FBURL + "/tagchat/chatrooms/" + $routeParams.roomId + "/messages");
+        var sync = $firebase(ref);
+        var syncObject = sync.$asObject();
+        syncObject.$bindTo($scope, "items");
+}]);

@@ -8,12 +8,6 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-  .controller('ChatwindowCtrl', function ($scope, dataLink) {
-      $scope.name = 'World';
-      $scope.chatLines = dataLink.messages
-      $scope.chatRooms = [{
-        name: 'first room'
-      },{
-        name: 'second room'
-      }];
-  });
+  .controller('ChatwindowCtrl', ['$scope', function ($scope) {
+
+  }]);

@@ -8,7 +8,7 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-  .controller('ChatmessageCtrl', function ($scope, $q, $filter, timestamp) {
+  .controller('ChatmessageCtrl', ['$scope','$q','$filter','timestamp',function ($scope, $q, $filter, timestamp) {
 
     var tags = [
       'angularJS',
@@ -37,13 +37,14 @@ angular.module('tagchatApp')
       for(var i in $scope.tags){
         tmpTags.push($scope.tags[i].text);
       }
-
-      $scope.items[timestamp]={
+      var id = new Date().getTime();
+      $scope.items[id]={
         from: 'bla',
+        insertedDtTm: timestamp,
         msg: $scope.newMessage,
         tags: tmpTags
       };
       $scope.newMessage='';
     };
 
-  });
+  }]);
