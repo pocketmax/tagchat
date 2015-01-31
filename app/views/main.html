@@ -37,9 +37,8 @@
                         </auto-complete>
                     </tags-input>
                 </div>
-                <input type="submit" class="btn btn-primary btn-lg pull-right btn-block" ng-disabled="!newMessage" value="send">
+                <input type="submit" class="btn btn-primary btn-lg pull-right btn-block" ng-disabled="!(newMessage.length && tags.length)" value="send">
             </form>
-
         </div>
 
     </div>
