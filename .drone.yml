@@ -1,0 +1,5 @@
+image: dockerfile/nginx
+script:
+  - npm install grunt -g
+  - npm install
+  - npm test
