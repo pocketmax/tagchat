@@ -1,18 +1,15 @@
-<pre>{{items | json}}</pre>
-
 <div class="row">
     <div class="col-sm-8 ">
 
         <div ng-controller="ChatwindowCtrl">
             <div class="form-group">
                 <div scroll-glue class="list-group" style="height: 300px;">
-                    <div class="list-group-item list-group-item-success" style="text-align: right;" ng-repeat="(id, line) in items | limitTo:-100 track by id">
+                    <div class="list-group-item list-group-item-success" style="text-align: right;" ng-repeat="(id, line) in items | orderBy:msg">
                         <div class="row">
                             {{line.msg}}
                         </div>
                         <div class="row">
-                            <div class="clearfix btn btn-primary pull-right" ng-repeat="tag in line.tags">{{tag}}
-                            </div>
+                            <div class="clearfix btn btn-primary pull-right" ng-repeat="tag in line.tags">{{tag}}</div>
                         </div>
                     </div>
                 </div>
