@@ -1,4 +1,4 @@
-image: dockerfile/nginx
+image: dockerfile/nodejs:latest
 script:
   - npm install grunt -g
   - npm install
