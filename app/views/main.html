@@ -4,12 +4,12 @@
         <div ng-controller="ChatwindowCtrl">
             <div class="form-group">
                 <div scroll-glue class="list-group" style="height: 300px;">
-                    <div class="list-group-item list-group-item-success" style="text-align: right;" ng-repeat="(id, line) in items | orderBy:msg">
+                    <div class="list-group-item list-group-item-success" style="text-align: right;" ng-repeat="(id, line) in items | tags:listenTags | orderBy:msg">
                         <div class="row">
                             {{line.msg}}
                         </div>
                         <div class="row">
-                            <div class="clearfix btn btn-primary pull-right" ng-repeat="tag in line.tags">{{tag}}</div>
+                            <div class="clearfix btn btn-primary pull-right" ng-repeat="(tag, val) in line.tags">{{tag}}</div>
                         </div>
                     </div>
                 </div>
@@ -37,12 +37,29 @@
                         </auto-complete>
                     </tags-input>
                 </div>
+                <div class="form-group">
+                    <tags-input
+                            ng-model="listenTags"
+                            add-from-autocomplete-only="true"
+                            placeholder="Tags to listen to">
+                        <auto-complete
+                                source="loadTags($query)"
+                                min-length="0"
+                                debounce-delay="0"
+                                max-results="10">
+                        </auto-complete>
+                    </tags-input>
+                </div>
                 <input type="submit" class="btn btn-primary btn-lg pull-right btn-block" ng-disabled="!(newMessage.length && tags.length)" value="send">
             </form>
+            {{listenTags}}
+        </div>
+
+        <div ng-controller="LoginCtrl" class="form-group">
+            {{auth.profile.nickname}}
+            <input class="btn btn-primary btn-sm pull-right btn-block" type="submit" ng-click="login()" value="login" />
         </div>
 
     </div>
-
-
 </div>
 

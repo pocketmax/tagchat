@@ -8,42 +8,29 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-  .controller('ChatmessageCtrl', ['$scope','$q','$filter','timestamp',function ($scope, $q, $filter, timestamp) {
-
-    var tags = [
-      'angularJS',
-      'bootstrapJS',
-      'java',
-      'mongoDB',
-      'nodeJS',
-      'phonegap',
-      'touch',
-      'extjs',
-      'css',
-      'sass',
-      'compass',
-      'less'
-    ];
+  .controller('ChatmessageCtrl', ['$scope','$q','$filter',function ($scope, $q, $filter) {
 
     $scope.loadTags = function(query) {
       var q = $q.defer();
-      q.resolve($filter('filter')(tags, query));
+      q.resolve($filter('filter')($scope.localTags, query));
       return q.promise;
     };
 
     $scope.addMessage = function(){
 
-      var tmpTags = [];
+      var tmpTags = {};
       for(var i in $scope.tags){
-        tmpTags.push($scope.tags[i].text);
+        tmpTags[$scope.tags[i].text] = true;
       }
-      var id = new Date().getTime();
-      $scope.items[id]={
+
+      var msg = {
         from: 'bla',
-        insertedDtTm: timestamp,
+        insertedDtTm: Firebase.ServerValue.TIMESTAMP,
         msg: $scope.newMessage,
         tags: tmpTags
       };
+      var id = new Date().getTime();
+      $scope.items[id]=msg;
       $scope.newMessage='';
     };
 
