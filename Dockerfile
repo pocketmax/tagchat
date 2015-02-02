@@ -2,11 +2,10 @@ FROM dockerfile/nodejs:latest
 
 ENV NODE_ENV production
 
-ADD ./dist  /app/dist
 ADD ./app.js  /app/
 ADD ./package.json  /app/
-
-RUN cd /app && npm install
+RUN cd /app && npm install && grunt build
+ADD ./dist  /app/dist
 
 WORKDIR /app
 CMD ["node", "app.js"]
