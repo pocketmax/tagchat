@@ -2,7 +2,8 @@
   "name": "tagchat",
   "version": "0.0.0",
   "dependencies": {
-    "express": "^4.11.1"
+    "express": "^4.11.1",
+    "grunt": "^0.4.1"
   },
   "devDependencies": {
     "escodegen": "^1.6.0",
