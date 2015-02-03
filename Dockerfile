@@ -6,6 +6,7 @@ ADD ./app.js  /app/
 ADD ./Gruntfile.js  /app/
 ADD ./package.json  /app/
 ADD ./bower.json  /app/
+ADD ./.bowerrc  /app/
 RUN cd /app && npm install && npm install -g grunt-cli && npm install -g bower && grunt build
 ADD ./dist  /app/dist
 
