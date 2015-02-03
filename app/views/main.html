@@ -6,18 +6,28 @@
                 <div scroll-glue class="list-group" style="height: 300px;">
                     <div class="list-group-item list-group-item-success" style="text-align: right;" ng-repeat="(id, line) in items | tags:listenTags | orderBy:msg">
                         <div class="row">
+                            <b>{{line.from}}</b><br>
                             {{line.msg}}
                         </div>
                         <div class="row">
-                            <div class="clearfix btn btn-primary pull-right" ng-repeat="(tag, val) in line.tags">{{tag}}</div>
+                            <div class="clearfix btn btn-warning pull-right" ng-repeat="(tag, val) in line.tags">{{tag}}</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div ng-controller="LoginCtrl" class="form-group">
+            <div ng-if="!auth.profile.nickname">
+                <input class="btn btn-success btn-sm pull-right btn-block" type="button" ng-click="login()" value="login" />
+            </div>
+            <div ng-if="auth.profile.nickname">
+                <input class="btn btn-danger btn-sm pull-right btn-block" type="button" ng-click="logout()" value="logout" />
+                <span><b>logged in as {{auth.profile.nickname}}</b></span>
+            </div>
+        </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-4" ng-hide="!auth.profile.nickname">
         <div ng-controller="ChatmessageCtrl">
 
             <form ng-submit="addMessage()">
@@ -52,14 +62,7 @@
                 </div>
                 <input type="submit" class="btn btn-primary btn-lg pull-right btn-block" ng-disabled="!(newMessage.length && tags.length)" value="send">
             </form>
-            {{listenTags}}
         </div>
-
-        <div ng-controller="LoginCtrl" class="form-group">
-            {{auth.profile.nickname}}
-            <input class="btn btn-primary btn-sm pull-right btn-block" type="submit" ng-click="login()" value="login" />
-        </div>
-
     </div>
 </div>
 
