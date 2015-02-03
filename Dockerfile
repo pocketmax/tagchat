@@ -5,7 +5,7 @@ ENV NODE_ENV production
 ADD ./app.js  /app/
 ADD ./Gruntfile.js  /app/
 ADD ./package.json  /app/
-RUN cd /app && npm install && npm install -g grunt-cli && grunt build
+RUN cd /app && npm install && npm install -g grunt-cli && npm install -g bower && grunt build
 ADD ./dist  /app/dist
 
 WORKDIR /app
