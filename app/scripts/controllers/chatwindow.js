@@ -12,6 +12,10 @@ angular.module('tagchatApp')
 
     return function(items, listenTags){
 
+      if(!listenTags.length){
+        return items;
+      }
+
       var filtered = {};
       for(var i in items){
         var item = items[i];
