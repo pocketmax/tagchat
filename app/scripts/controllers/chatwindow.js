@@ -12,7 +12,7 @@ angular.module('tagchatApp')
 
     return function(items, listenTags){
 
-      if(!listenTags.length){
+      if(!listenTags || !listenTags.length){
         return items;
       }
 
