@@ -8,6 +8,7 @@ ADD ./app.js  /app/
 ADD ./bower.json  /app/
 ADD ./Gruntfile.js  /app/
 ADD ./package.json  /app/
+ADD ./.tmp  /app/
 
 WORKDIR /app
 
