@@ -8,7 +8,7 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-  .controller('ChatmessageCtrl', ['$scope','$q','$filter',function ($scope, $q, $filter) {
+  .controller('ChatmessageCtrl', ['$scope','$q','$filter','auth',function ($scope, $q, $filter, auth) {
 
     $scope.loadTags = function(query) {
       var q = $q.defer();
@@ -24,7 +24,7 @@ angular.module('tagchatApp')
       }
 
       var msg = {
-        from: 'bla',
+        from: auth.profile.nickname,
         insertedDtTm: Firebase.ServerValue.TIMESTAMP,
         msg: $scope.newMessage,
         tags: tmpTags
