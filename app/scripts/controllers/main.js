@@ -31,7 +31,7 @@ angular.module('tagchatApp')
             'less'
         ];
 
-        if(auth.profile.nickname){
+        if(auth.profile && auth.profile.nickname){
             $scope.listenTags = store.get('profile').listenTags;
         } else {
             $scope.listenTags = [];
@@ -39,7 +39,7 @@ angular.module('tagchatApp')
 
         $scope.$watchCollection('listenTags', function(newVal){
 
-            if(!auth.profile.nickname){
+            if(!auth.profile || !auth.profile.nickname){
                 return false;
             }
 
