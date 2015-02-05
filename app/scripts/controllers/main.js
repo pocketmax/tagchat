@@ -8,7 +8,7 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-    .controller('MainCtrl', ['$scope', 'auth', 'localTags', 'Db','$q', function ($scope, auth, localTags, Db, $q) {
+    .controller('MainCtrl', ['$scope', 'auth', 'localTags','Db','$q','$filter',function ($scope, auth, localTags, Db, $q, $filter) {
         $scope.auth = auth;
         Db.bind($scope,"msgs");
 
