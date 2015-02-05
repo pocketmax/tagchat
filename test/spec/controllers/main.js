@@ -6,15 +6,18 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('tagchatApp'));
 
   var MainCtrl,
-      scope,
-      auth,
+      scope = {},
+      auth = {},
       localTags,
-      Db,
+      Db = {
+        bind: function(data, field){
+          data[field] = {};
+        }
+      },
       q,
       filter;
 
   beforeEach(inject(function ($controller) {
-    scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
       auth: auth,
@@ -26,11 +29,11 @@ describe('Controller: MainCtrl', function () {
   }));
 
   it('should data bind to $scope.msgs', function () {
-
+    expect(scope.msgs).toBeDefined();
   });
 
   it('should assign auth to $scope.auth', function () {
-    expect($routeParams.roomId).not.toBe('');
+    expect(scope.auth).toBe(auth);
   });
 
   // TODO: figure out how to properly test filtering results
