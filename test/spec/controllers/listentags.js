@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: ListenertagsCtrl', function () {
+describe('Controller: ListentagsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('tagchatApp'));
 
-  var ListenertagsCtrl,
+  var ListentagsCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    ListenertagsCtrl = $controller('ListenertagsCtrl', {
+    ListentagsCtrl = $controller('ListentagsCtrl', {
       $scope: scope
     });
   }));
