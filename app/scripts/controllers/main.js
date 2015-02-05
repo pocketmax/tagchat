@@ -8,43 +8,15 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-    .controller('MainCtrl', ['$firebase', 'FBURL', '$routeParams', '$scope', 'auth', 'store', function ($firebase, FBURL, $routeParams, $scope, auth, store) {
-
+    .controller('MainCtrl', ['$scope', 'auth', 'localTags', 'Db','$q', function ($scope, auth, localTags, Db, $q) {
         $scope.auth = auth;
+        Db.bind($scope,"msgs");
 
-        var ref = new Firebase(FBURL + "/tagchat/chatrooms/" + $routeParams.roomId + "/messages");
-        var sync = $firebase(ref);
-        var syncObject = sync.$asObject();
-        syncObject.$bindTo($scope, "items");
-        $scope.localTags = [
-            'angularJS',
-            'bootstrapJS',
-            'java',
-            'mongoDB',
-            'nodeJS',
-            'phonegap',
-            'touch',
-            'extjs',
-            'css',
-            'sass',
-            'compass',
-            'less'
-        ];
+        $scope.loadTags = function(query) {
+            var q = $q.defer();
+            q.resolve($filter('filter')(localTags, query));
+            return q.promise;
+        };
 
-        if(auth.profile && auth.profile.nickname){
-            $scope.listenTags = store.get('profile').listenTags;
-        } else {
-            $scope.listenTags = [];
-        }
-
-        $scope.$watchCollection('listenTags', function(newVal){
-
-            if(!auth.profile || !auth.profile.nickname){
-                return false;
-            }
-
-            auth.profile.listenTags = newVal;
-            store.set('profile', auth.profile);
-        });
 
     }]);
