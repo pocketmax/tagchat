@@ -33,7 +33,11 @@ module.exports = function(config) {
       'bower_components/angular-md5/angular-md5.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'test/spec/**/*.js',
+      'http://cdn.auth0.com/js/lock-7.0.min.js',
+      'http://cdn.rawgit.com/auth0/angular-storage/master/dist/angular-storage.js',
+      'http://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js',
+      'http://cdn.auth0.com/w2/auth0-angular-4.js'
     ],
 
     // list of files / patterns to exclude
