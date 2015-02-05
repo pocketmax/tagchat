@@ -9,10 +9,11 @@ describe('Controller: ChatmessageCtrl', function () {
       ChatmessageCtrl,
       scope,
       auth,
+      tags = [{text: 'test'}],
       Db;
 
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = { msgs: {}, newMessage: 'my message' };
+  beforeEach(inject(function ($controller) {
+    scope = { msgs: {}, newMessage: 'my message', tags: tags };
     auth = { profile: { nickname: 'test' } };
     Db = { timestamp: 'stamp'};
     ChatmessageCtrl = $controller('ChatmessageCtrl', {
@@ -53,7 +54,7 @@ describe('Controller: ChatmessageCtrl', function () {
       for(var i in scope.msgs){
         msg = scope.msgs[i];
       }
-      expect(msg.tags).toBe(tags);
+      expect(msg.tags[tags[0]['text']]).toBe(true);
     });
 
   });
