@@ -9,10 +9,10 @@
  * Filter in the tagchatApp.
  */
 angular.module('tagchatApp')
-    .filter('tags', function () {
-        return function (items, listenTags) {
+    .filter('tags', ['listenTags', function (listenTags) {
+        return function (items) {
 
-            if (!listenTags || !listenTags.length) {
+            if(!listenTags.length){
                 return items;
             }
 
@@ -32,4 +32,4 @@ angular.module('tagchatApp')
             return filtered;
 
         };
-    });
+    }]);
