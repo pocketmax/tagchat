@@ -5,30 +5,36 @@ describe('Controller: MainCtrl', function () {
   // load the controller's module
   beforeEach(module('tagchatApp'));
 
-  var MainCtrl, scope;
+  var MainCtrl,
+      scope,
+      auth,
+      localTags,
+      Db,
+      q,
+      filter;
 
-  var $routeParams = { roomId: 'testing123' };
-
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, $firebase, $routeParams) {
+  beforeEach(inject(function ($controller) {
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
-      $firebase: $firebase,
-      $routeParams: $routeParams
+      auth: auth,
+      localTags: localTags,
+      Db: Db,
+      $q: q,
+      $filter: filter
     });
   }));
 
-  it('should attach "items" to $scope', function () {
-//    expect(scope.items).toBeDefined();
+  it('should data bind to $scope.msgs', function () {
+
   });
 
-  it('should get roomId from $routeParams', function () {
+  it('should assign auth to $scope.auth', function () {
     expect($routeParams.roomId).not.toBe('');
   });
 
-  it('should start firebase service', function () {
+  // TODO: figure out how to properly test filtering results
+  it('should filter results from localTags', function () {
   });
-
 
 });
