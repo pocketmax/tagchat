@@ -8,7 +8,7 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-    .controller('LoginCtrl', ['store','$scope','auth',function (store, $scope, auth) {
+    .controller('LoginCtrl', ['$scope','store','auth',function ($scope, store, auth) {
         $scope.login = function () {
             auth.signin({}, function (profile, token) {
                 // Success callback
@@ -22,6 +22,7 @@ angular.module('tagchatApp')
             auth.signout();
             store.remove('profile');
             store.remove('token');
+            store.remove('localTags');
         }
 
     }]);
