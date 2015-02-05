@@ -8,13 +8,7 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-  .controller('ChatmessageCtrl', ['$scope','$q','$filter','auth',function ($scope, $q, $filter, auth) {
-
-    $scope.loadTags = function(query) {
-      var q = $q.defer();
-      q.resolve($filter('filter')($scope.localTags, query));
-      return q.promise;
-    };
+  .controller('ChatmessageCtrl', ['$scope','auth','Db',function ($scope, auth, Db) {
 
     $scope.addMessage = function(){
 
@@ -23,14 +17,13 @@ angular.module('tagchatApp')
         tmpTags[$scope.tags[i].text] = true;
       }
 
-      var msg = {
+      var id = new Date().getTime();
+      $scope.msgs[id] = {
         from: auth.profile.nickname,
-        insertedDtTm: Firebase.ServerValue.TIMESTAMP,
+        insertedDtTm: Db.timestamp,
         msg: $scope.newMessage,
         tags: tmpTags
       };
-      var id = new Date().getTime();
-      $scope.items[id]=msg;
       $scope.newMessage='';
     };
 
