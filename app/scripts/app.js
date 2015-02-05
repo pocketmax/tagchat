@@ -24,23 +24,36 @@ angular
         'angular-storage',
         'angular-jwt'
     ])
-    .constant('FBURL', 'https://burning-fire-3434.firebaseio.com')
-    .run(['auth', function (auth) {
+    .run(['auth','store','jwtHelper',function (auth, store, jwtHelper) {
+
+        //hook in all auth when app loads
         auth.hookEvents();
-    }])
-    .run(['$rootScope','auth','store','jwtHelper',function ($rootScope, auth, store, jwtHelper) {
-        // This events gets triggered on refresh or URL change
-        $rootScope.$on('$locationChangeStart', function () {
-            if (!auth.isAuthenticated) {
-                var token = store.get('token');
-                if (token) {
-                    if (!jwtHelper.isTokenExpired(token)) {
-                        auth.authenticate(store.get('profile'), token);
-                    }
+
+        //can be wrapped in a service for basic auth
+        if (!auth.isAuthenticated) {
+            var token = store.get('token');
+            if (token) {
+                if (!jwtHelper.isTokenExpired(token)) {
+                    auth.authenticate(store.get('profile'), token);
                 }
             }
-        })
+        }
     }])
+    .value('listenTags',[])
+    .value('localTags',[
+        'angularJS',
+        'bootstrapJS',
+        'java',
+        'mongoDB',
+        'nodeJS',
+        'phonegap',
+        'touch',
+        'extjs',
+        'css',
+        'sass',
+        'compass',
+        'less'
+    ])
     .config(['md5Provider', '$routeProvider', 'authProvider', function (md5Provider, $routeProvider, authProvider) {
 
         authProvider.init({
