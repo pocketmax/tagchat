@@ -7,13 +7,25 @@ describe('Filter: tags', function () {
 
   // initialize a new instance of the filter before each test
   var tags;
+
   beforeEach(inject(function ($filter) {
-    tags = $filter('tags');
+    var listenTags = [{ text: 'a' }];
+    tags = $filter('tags', {
+      $scope: { foo:'bar'},
+      listenTags: listenTags
+    });
+
+    expect($filter).toBeDefined();
+    expect(listenTags).toBeDefined();
+    expect(tags).toBeDefined();
+
   }));
 
   it('should return the input prefixed with "tags filter:"', function () {
-    var text = 'angularjs';
-    expect(tags(text)).toBe('tags filter: ' + text);
+    var text = [{ text: 'a' },{ text: 'a' },{ text: 'c' },{ text: 'c' }];
+    console.log('--------------');
+    console.log(tags(text));
+//    expect(tags(text)).toBe(text);
   });
 
 });

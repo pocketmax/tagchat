@@ -9,8 +9,9 @@
  * Filter in the tagchatApp.
  */
 angular.module('tagchatApp')
-    .filter('tags', ['listenTags', function (listenTags) {
+    .filter('tags', ['listenTags', function (listenTags, $scope) {
         return function (items) {
+
 
             if(!listenTags.length){
                 return items;
