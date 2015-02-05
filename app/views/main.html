@@ -1,10 +1,9 @@
 <div class="row">
     <div class="col-sm-8 ">
-
         <div ng-controller="ChatwindowCtrl">
             <div class="form-group">
                 <div scroll-glue class="list-group" style="height: 310px;">
-                    <div class="list-group-item list-group-item-success" style="text-align: right;" ng-repeat="(id, line) in items | tags:listenTags | orderBy:msg">
+                    <div class="list-group-item list-group-item-success" style="text-align: right;" ng-repeat="(id, line) in msgs | tags | orderBy:msg">
                         <div class="row">
                             <b>{{line.from}}</b><br>
                             {{line.msg}}
@@ -48,15 +47,17 @@
                     </tags-input>
                 </div>
                 <div class="form-group">
-                    <tags-input
+                    <tags-input ng-controller="ListentagsCtrl"
                             ng-model="listenTags"
                             add-from-autocomplete-only="true"
+                            on-tag-added="cacheTags()"
+                            on-tag-removed="cacheTags()"
                             placeholder="Tags to listen to">
                         <auto-complete
-                                source="loadTags($query)"
-                                min-length="0"
-                                debounce-delay="0"
-                                max-results="10">
+                            source="loadTags($query)"
+                            min-length="0"
+                            debounce-delay="0"
+                            max-results="10">
                         </auto-complete>
                     </tags-input>
                 </div>
