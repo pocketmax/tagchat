@@ -14,17 +14,16 @@ describe('Controller: MainCtrl', function () {
           data[field] = {};
         }
       },
-      q,
-      filter;
+      q;
 
-  beforeEach(inject(function ($controller) {
+  beforeEach(inject(function ($controller, $filter) {
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
       auth: auth,
       localTags: localTags,
       Db: Db,
       $q: q,
-      $filter: filter
+      $filter: $filter
     });
   }));
 
@@ -36,7 +35,7 @@ describe('Controller: MainCtrl', function () {
     expect(scope.auth).toBe(auth);
   });
 
-  // TODO: figure out how to properly test filtering results
+  // TODO: figure out how to properly test promises
   it('should filter results from localTags', function () {
   });
 

@@ -32,7 +32,6 @@ describe('Controller: LoginCtrl', function () {
 
         auth = {
             signin: function (obj, succCb) {
-                console.log('MOCK SIGNIN!!!!');
                 succCb({}, {});
             },
             signout: function () {
