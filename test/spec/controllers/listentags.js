@@ -13,18 +13,7 @@ describe('Controller: ListentagsCtrl', function () {
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
-        store = new function () {
-            var core = {};
-
-            this.get = function (field) {
-                return core[field];
-            };
-
-            this.set = function (field, data) {
-                core[field] = data;
-            };
-
-        };
+        store = new MockStore();
 
         ListentagsCtrl = $controller('ListentagsCtrl', {
             $scope: scope,

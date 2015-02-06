@@ -2,41 +2,38 @@
 
 describe('Controller: MainCtrl', function () {
 
-  // load the controller's module
-  beforeEach(module('tagchatApp'));
+    // load the controller's module
+    beforeEach(module('tagchatApp'));
 
-  var MainCtrl,
-      scope = {},
-      auth = {},
-      localTags,
-      Db = {
-        bind: function(data, field){
-          data[field] = {};
-        }
-      },
-      q;
+    var MainCtrl,
+        scope = {},
+        auth = {},
+        localTags,
+        Db,
+        q;
 
-  beforeEach(inject(function ($controller, $filter) {
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope,
-      auth: auth,
-      localTags: localTags,
-      Db: Db,
-      $q: q,
-      $filter: $filter
+    beforeEach(inject(function ($controller, $filter) {
+        Db = new MockDb();
+        MainCtrl = $controller('MainCtrl', {
+            $scope: scope,
+            auth: auth,
+            localTags: localTags,
+            Db: Db,
+            $q: q,
+            $filter: $filter
+        });
+    }));
+
+    it('should data bind to $scope.msgs', function () {
+        expect(scope.msgs).toBeDefined();
     });
-  }));
 
-  it('should data bind to $scope.msgs', function () {
-    expect(scope.msgs).toBeDefined();
-  });
+    it('should assign auth to $scope.auth', function () {
+        expect(scope.auth).toBe(auth);
+    });
 
-  it('should assign auth to $scope.auth', function () {
-    expect(scope.auth).toBe(auth);
-  });
-
-  // TODO: figure out how to properly test promises
-  it('should filter results from localTags', function () {
-  });
+    // TODO: figure out how to properly test promises
+    it('should filter results from localTags', function () {
+    });
 
 });

@@ -6,38 +6,14 @@ describe('Controller: LoginCtrl', function () {
     beforeEach(module('tagchatApp'));
 
     var LoginCtrl,
-        store = {},
+        store,
         scope = {},
         auth;
 
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller) {
-
-        store = new function () {
-            var core = {};
-
-            this.get = function (field) {
-                return core[field];
-            };
-
-            this.set = function (field, data) {
-                core[field] = data;
-            };
-
-            this.remove = function (field) {
-                delete core[field];
-            };
-
-        };
-
-        auth = {
-            signin: function (obj, succCb) {
-                succCb({}, {});
-            },
-            signout: function () {
-
-            }
-        };
+        store = new MockStore();
+        auth = new MockAuth();
 
         LoginCtrl = $controller('LoginCtrl', {
             $scope: scope,
