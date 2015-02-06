@@ -8,7 +8,7 @@ describe('Controller: LoginCtrl', function () {
   var LoginCtrl,
       store = {},
       scope = {},
-      auth;
+      auth = { signout: function(){} };
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller) {
@@ -21,6 +21,10 @@ describe('Controller: LoginCtrl', function () {
 
       this.set = function (field, data) {
         core[field] = data;
+      };
+
+      this.remove = function (field) {
+        delete core[field];
       };
 
     };
@@ -42,21 +46,30 @@ describe('Controller: LoginCtrl', function () {
 
   describe('logout()', function(){
 
-    // TODO: use the assert to detect if a function was run
     it('should run auth.signout()', function () {
-      expect(0).toBe(0);
-
+      spyOn(auth, 'signout');
+      scope.logout();
+      expect(auth.signout).toHaveBeenCalled();
     });
 
     it('should remove cached profile object', function () {
+      spyOn(store, 'remove');
+      scope.logout();
+      expect(store.remove).toHaveBeenCalledWith('profile');
       expect(store.get('profile')).toBeUndefined();
     });
 
     it('should remove cached token object', function () {
+      spyOn(store, 'remove');
+      scope.logout();
+      expect(store.remove).toHaveBeenCalledWith('token');
       expect(store.get('token')).toBeUndefined();
     });
 
     it('should remove cached localTags object', function () {
+      spyOn(store, 'remove');
+      scope.logout();
+      expect(store.remove).toHaveBeenCalledWith('localtag');
       expect(store.get('localTags')).toBeUndefined();
     });
 
