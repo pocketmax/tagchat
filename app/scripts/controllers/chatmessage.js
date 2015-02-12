@@ -8,7 +8,7 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-  .controller('ChatmessageCtrl', ['$scope','auth','Db',function ($scope, auth, Db) {
+  .controller('ChatmessageCtrl', ['$scope','auth',function ($scope, auth) {
 
     $scope.addMessage = function(){
 
@@ -20,7 +20,6 @@ angular.module('tagchatApp')
       var id = new Date().getTime();
       $scope.msgs[id] = {
         from: auth.profile.nickname,
-        insertedDtTm: Db.timestamp,
         msg: $scope.newMessage,
         tags: tmpTags
       };
