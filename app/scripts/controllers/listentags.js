@@ -9,11 +9,6 @@
  */
 angular.module('tagchatApp')
   .controller('ListentagsCtrl', ['$scope','store','listenTags',function ($scope, store, listenTags) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
     $scope.listenTags = listenTags;
 
     $scope.cacheTags = function(){

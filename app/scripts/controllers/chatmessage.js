@@ -17,8 +17,8 @@ angular.module('tagchatApp')
         tmpTags[$scope.tags[i].text] = true;
       }
 
-      var id = new Date().getTime();
-      $scope.msgs[id] = {
+      var id = new Date().getTime().toString();
+      $scope.msgs[id]={
         from: auth.profile.nickname,
         msg: $scope.newMessage,
         tags: tmpTags

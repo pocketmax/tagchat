@@ -3,7 +3,7 @@
         <div ng-controller="ChatwindowCtrl">
             <div class="form-group">
                 <div scroll-glue class="list-group" style="height: 310px;">
-                    <div class="list-group-item list-group-item-success" style="text-align: right;" ng-repeat="(id, line) in msgs | tags | orderBy:msg">
+                    <div class="list-group-item list-group-item-success" style="text-align: right;" ng-repeat="line in msgs | tags | orderBy:msg">
                         <div class="row">
                             <b>{{line.from}}</b><br>
                             {{line.msg}}
