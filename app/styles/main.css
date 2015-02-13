@@ -77,3 +77,8 @@ body {
     border-bottom: 0;
   }
 }
+
+.has-error .form-control {
+  background-color: #e7c3c3;
+  border: 2px solid red;
+}
