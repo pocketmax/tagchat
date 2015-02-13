@@ -54,7 +54,7 @@ angular
         'compass',
         'less'
     ])
-    .config(['md5Provider', '$routeProvider', 'authProvider', function (md5Provider, $routeProvider, authProvider) {
+    .config(['md5Provider', '$routeProvider', 'authProvider', '$locationProvider', function (md5Provider, $routeProvider, authProvider, $locationProvider) {
 
         authProvider.init({
             domain: 'pocketmax.auth0.com',
@@ -70,5 +70,7 @@ angular
             .otherwise({
                 redirectTo: '/' + newRoomId
             });
+
+        $locationProvider.html5Mode(true);
 
     }]);

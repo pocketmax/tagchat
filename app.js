@@ -3,6 +3,11 @@ var app = express();
 
 app.use(express.static(__dirname + '/dist'));
 
+app.get('/:roomId', function (req, res) {
+    var name = req.params.roomId;
+    res.sendFile(__dirname + '/dist/index.html');
+});
+
 var server = app.listen(80, function () {
 
     var host = server.address().address;
