@@ -8,10 +8,10 @@
  * Controller of the tagchatApp
  */
 angular.module('tagchatApp')
-    .controller('MainCtrl', ['$scope', 'auth', 'localTags','Db','$q','$filter',function ($scope, auth, localTags, Db, $q, $filter) {
+    .controller('MainCtrl', ['Db','$scope', 'auth', 'localTags','$q','$filter',function (Db, $scope, auth, localTags, $q, $filter) {
         $scope.auth = auth;
-        Db.bind($scope,"msgs");
 
+		$scope.msgs = Db.ref;
         $scope.loadTags = function(query) {
             var q = $q.defer();
             q.resolve($filter('filter')(localTags, query));
