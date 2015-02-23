@@ -16,7 +16,7 @@ angular.module('tagchatApp')
 			for (var i in $scope.tags) {
 				tmpTags[$scope.tags[i].text] = true;
 			}
-			Db.ref.push({
+			Db.ref.$add({
 				from: auth.profile.nickname,
 				msg: $scope.newMessage,
 				timestamp: (new Date()).getTime().toString(),
